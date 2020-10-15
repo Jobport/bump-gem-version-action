@@ -37,15 +37,16 @@ elif echo "${LABELS}" | grep "bump:minor" ; then
 elif echo "${LABELS}" | grep "bump:patch" ; then
   BUMP_LEVEL="patch"
 fi
+echo "::set-output name=level::#{BUMP_LEVEL}"
 
 if [ -z "${BUMP_LEVEL}" ]; then
   echo "PR with labels for bump not found. Do nothing."
   echo "::set-output name=skipped::true"
   exit
 fi
-echo "::set-output name=level::#{BUMP_LEVEL}"
-echo "Bump ${BUMP_LEVEL} version"
+echo "::set-output name=skipped::false"
 
+echo "Bump ${BUMP_LEVEL} version"
 if [ "${INPUT_DRY_RUN}" = "true" ]; then
   echo
   exit
