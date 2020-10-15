@@ -1,0 +1,24 @@
+name: 'bump gem - Bump gem version when merging Pull Request with bump labels'
+description: 'Bump gem version when merging Pull Request with specific labels (bump:major,bump:minor,bump:patch)'
+author: 'tijn,intens'
+inputs:
+  default_bump_level:
+    description: "Default bump level if labels are not attached [major,minor,patch]. Do nothing if it's empty"
+  dry_run:
+    description: "Do not actually tag next version if it's true"
+  github_token:
+    description: 'GITHUB_TOKEN to list pull requests'
+    default: '${{ github.token }}'
+outputs:
+  level:
+    description: "major, minor or patch (or empty)"
+  skipped:
+    description: "True if release is skipped. e.g. No labels attached to PR."
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+# Cheat sheet: https://haya14busa.github.io/github-action-brandings/
+branding:
+  icon: 'chevrons-up'
+  color: 'yellow'
