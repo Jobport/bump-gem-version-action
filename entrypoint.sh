@@ -43,12 +43,12 @@ if [ -z "${BUMP_LEVEL}" ]; then
   echo "PR with labels for bump not found. Do nothing."
   echo "::set-output name=skipped::true"
   exit
+else
+  echo "::set-output name=skipped::false"
 fi
-echo "::set-output name=skipped::false"
 
 echo "Bump ${BUMP_LEVEL} version"
 if [ "${INPUT_DRY_RUN}" = "true" ]; then
-  echo
   exit
 fi
 
