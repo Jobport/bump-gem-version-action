@@ -25,7 +25,7 @@ list_pulls() {
 create_label() {
   curl -s -f \
     -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-    -X POST
+    -X POST \
     -d @/labels/$1.json \
     https://api.github.com/repos/${GITHUB_REPOSITORY}/labels
 }
@@ -33,7 +33,7 @@ create_label() {
 update_label() {
   curl -s -f \
     -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-    -X PATCH
+    -X PATCH \
     -d @/labels/$1.json \
     https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
 }
