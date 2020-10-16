@@ -23,6 +23,7 @@ list_pulls() {
 }
 
 create_label() {
+  echo "Create label $1"
   curl -s -f \
     -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
     -X POST \
@@ -31,11 +32,12 @@ create_label() {
 }
 
 update_label() {
+  echo "Update label $1"
   curl -s -f \
     -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
     -X PATCH \
     -d @/labels/$1.json \
-    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/bump:$1
 }
 
 create_or_update_label() {
