@@ -33,7 +33,7 @@ create_label() {
 
 update_label() {
   echo "Update label $1"
-  curl -s -f \
+  curl -s \
     -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
     -X PATCH \
     -d @/labels/$1.json \
