@@ -1,0 +1,5 @@
+{
+  "color": "#e0e4b7",
+  "description": "Publish the next minor version of this gem",
+  "name": "bump:minor"
+}

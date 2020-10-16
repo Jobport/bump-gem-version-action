@@ -22,6 +22,32 @@ list_pulls() {
   fi
 }
 
+create_label() {
+  curl -s -f \
+    -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+    -X POST
+    -d @/labels/$1.json \
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels
+}
+
+update_label() {
+  curl -s -f \
+    -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+    -X PATCH
+    -d @/labels/$1.json \
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
+}
+
+create_or_update_label() {
+  create_label $1 || update_label $1
+}
+
+create_labels() {
+  create_or_update_label major
+  create_or_update_label minor
+  create_or_update_label patch
+}
+
 setup_git() {
   git config user.name "${GITHUB_ACTOR}"
   git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -52,5 +78,6 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
   exit
 fi
 
+create_labels
 setup_git
 gem bump --commit --push --version ${BUMP_LEVEL}
