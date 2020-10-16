@@ -55,6 +55,7 @@ setup_git() {
   git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 }
 
+create_labels
 setup_from_push_event
 
 BUMP_LEVEL="${INPUT_DEFAULT_BUMP_LEVEL}"
@@ -80,6 +81,5 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
   exit
 fi
 
-create_labels
 setup_git
 gem bump --commit --push --version ${BUMP_LEVEL}
