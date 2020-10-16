@@ -20,5 +20,5 @@ runs:
 
 # Cheat sheet: https://haya14busa.github.io/github-action-brandings/
 branding:
-  icon: 'chevrons-up'
-  color: 'yellow'
+  icon: 'package'
+  color: 'gray-dark'

@@ -1,0 +1,5 @@
+{
+  "color": "edf1c1",
+  "description": "Publish the next patch version of this gem",
+  "name": "bump:patch"
+}
