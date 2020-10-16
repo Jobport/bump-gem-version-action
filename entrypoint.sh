@@ -22,30 +22,24 @@ list_pulls() {
   fi
 }
 
-curl_get() {
-  if [ -n "${INPUT_GITHUB_TOKEN}" ]; then
-    curl -s -f -H "Authorization: token ${INPUT_GITHUB_TOKEN}" "$1"
-  else
-    echo "INPUT_GITHUB_TOKEN is not available. Subscequent GitHub API call may fail due to API limit." >&2
-    curl -s -f "$1"
-  fi
+create_label() {
+  curl -s -f \
+    -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+    -X POST
+    -d @/labels/$1.json \
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels
+}
+
+update_label() {
+  curl -s -f \
+    -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+    -X PATCH
+    -d @/labels/$1.json \
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
 }
 
 create_or_update_label() {
-  label_url="https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1"
-  if [ curl_get $label_url ]; then # update
-    curl -s \
-      -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-      -X PATCH
-      -d @/labels/$1.json \
-      $label_url
-  else # create
-    curl -s \
-      -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-      -X POST
-      -d @/labels/$1.json \
-      https://api.github.com/repos/${GITHUB_REPOSITORY}/labels
-  fi
+  create_label $1 || update_label $1
 }
 
 create_labels() {
