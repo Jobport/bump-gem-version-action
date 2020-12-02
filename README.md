@@ -1,6 +1,10 @@
+![alt text](bump.png)
+
 # bump gem version
 
 A GitHub action to automatically bump the versions of your Ruby Gems after merging a pull request.
+
+It will create a new version of your gem and a git tag with the latest version.
 
 ### inputs
 
