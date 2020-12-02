@@ -82,4 +82,4 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
 fi
 
 setup_git
-gem bump --commit --push --version ${BUMP_LEVEL}
+gem bump --commit --push --tag --version ${BUMP_LEVEL}
