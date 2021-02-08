@@ -1,5 +1,5 @@
 {
   "color": "c9cba3",
-  "description": "Publish the next major version of this gem",
+  "description": "Publish X.y.z - incompatible API changes",
   "name": "bump:major"
 }

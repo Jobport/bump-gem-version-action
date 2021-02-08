@@ -1,5 +1,6 @@
 {
   "color": "e0e4b7",
-  "description": "Publish the next minor version of this gem",
+  "description": "Publish x.Y.z - backwards compatible new features",
   "name": "bump:minor"
 }
+s
