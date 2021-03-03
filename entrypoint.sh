@@ -37,7 +37,7 @@ update_label() {
     -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
     -X PATCH \
     -d @/labels/$1.json \
-    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/bump:$1
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
 }
 
 create_or_update_label() {
@@ -59,11 +59,11 @@ create_labels
 setup_from_push_event
 
 BUMP_LEVEL="${INPUT_DEFAULT_BUMP_LEVEL}"
-if echo "${LABELS}" | grep "bump:major" ; then
+if echo "${LABELS}" | grep "major" ; then
   BUMP_LEVEL="major"
-elif echo "${LABELS}" | grep "bump:minor" ; then
+elif echo "${LABELS}" | grep "minor" ; then
   BUMP_LEVEL="minor"
-elif echo "${LABELS}" | grep "bump:patch" ; then
+elif echo "${LABELS}" | grep "patch" ; then
   BUMP_LEVEL="patch"
 fi
 echo "::set-output name=level::#{BUMP_LEVEL}"
