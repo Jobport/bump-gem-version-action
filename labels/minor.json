@@ -1,6 +1,6 @@
 {
   "color": "e0e4b7",
   "description": "Publish x.Y.z - backwards compatible new features",
-  "name": "bump:minor"
+  "name": "minor"
 }
 s

@@ -1,5 +1,5 @@
 {
   "color": "edf1c1",
   "description": "Publish m.y.Z - backwards compatible bugfixes",
-  "name": "bump:patch"
+  "name": "patch"
 }
