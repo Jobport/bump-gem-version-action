@@ -22,25 +22,6 @@ list_pulls() {
   fi
 }
 
-create_label() {
-  echo "Create label $1"
-  curl -s -f \
-    -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-    -X POST \
-    -d @/labels/$1.json \
-    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels
-}
-
-update_label() {
-  echo "Update label $1"
-  curl -s \
-    -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-    -X PATCH \
-    -d @/labels/$1.json \
-    https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
-}
-
-
 setup_git() {
   git config user.name "${GITHUB_ACTOR}"
   git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -72,13 +53,5 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
 fi
 
 setup_git
-gem bump --commit --branch --push --tag --version ${BUMP_LEVEL}
+gem bump --commit --push --tag --version ${BUMP_LEVEL}
 
-branch=$(git rev-parse --abbrev-ref HEAD)
-base=$(git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')
-
-curl -s \
-  -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-  -X POST \
-  -d "{ 'head': '${branch}', 'base': '${base}' }
-  https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
