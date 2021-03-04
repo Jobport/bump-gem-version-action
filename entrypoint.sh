@@ -73,3 +73,12 @@ fi
 
 setup_git
 gem bump --commit --branch --push --tag --version ${BUMP_LEVEL}
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+base=$(git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')
+
+curl -s \
+  -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+  -X POST \
+  -d "{ 'head': '${branch}', 'base': '${base}' }
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
