@@ -40,22 +40,12 @@ update_label() {
     https://api.github.com/repos/${GITHUB_REPOSITORY}/labels/$1
 }
 
-create_or_update_label() {
-  create_label $1 || update_label $1
-}
-
-create_labels() {
-  create_or_update_label major
-  create_or_update_label minor
-  create_or_update_label patch
-}
 
 setup_git() {
   git config user.name "${GITHUB_ACTOR}"
   git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 }
 
-create_labels
 setup_from_push_event
 
 BUMP_LEVEL="${INPUT_DEFAULT_BUMP_LEVEL}"
@@ -82,4 +72,4 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
 fi
 
 setup_git
-gem bump --commit --push --tag --version ${BUMP_LEVEL}
+gem bump --commit --branch --push --tag --version ${BUMP_LEVEL}
