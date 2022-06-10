@@ -68,5 +68,6 @@ fi
 
 setup_git
 setup_gem_credentials
+setup_env
 gem bump --commit --version ${BUMP_LEVEL} --push --tag --release
 
