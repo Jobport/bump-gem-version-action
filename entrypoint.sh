@@ -27,6 +27,20 @@ setup_git() {
   git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 }
 
+setup_gem_credentials() {
+  mkdir -p ~/.gem
+  touch ~/.gem/credentials
+  chmod 600 ~/.gem/credentials
+  echo ":github: Bearer ${INPUT_GITHUB_TOKEN}" > ~/.gem/credentials
+}
+
+setup_env() {
+  export GEM_RELEASE_RELEASE_TOKEN="${INPUT_GITHUB_TOKEN}"
+  export GEM_RELEASE_RELEASE_HOST=https://rubygems.pkg.github.com/jobport
+  export GEM_RELEASE_RELEASE_KEY=github
+  export GEM_RELEASE_RELEASE_GITHUB=true
+}
+
 setup_from_push_event
 
 BUMP_LEVEL="${INPUT_DEFAULT_BUMP_LEVEL}"
@@ -53,5 +67,6 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
 fi
 
 setup_git
-gem bump --commit --version ${BUMP_LEVEL} --push --tag --release --host "https://rubygems.pkg.github.com/jobport" --key ${INPUT_GITHUB_TOKEN} --github --token ${INPUT_GITHUB_TOKEN}
+setup_gem_credentials
+gem bump --commit --version ${BUMP_LEVEL} --push --tag --release
 
