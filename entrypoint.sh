@@ -53,5 +53,5 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
 fi
 
 setup_git
-gem bump --commit --push --tag --release --github --token ${INPUT_GITHUB_TOKEN} --version ${BUMP_LEVEL}
+gem bump --commit --version ${BUMP_LEVEL} --push --tag --release --host "https://rubygems.pkg.github.com/jobport" --key ${INPUT_GITHUB_TOKEN} --github --token ${INPUT_GITHUB_TOKEN}
 
