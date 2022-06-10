@@ -53,5 +53,5 @@ if [ "${INPUT_DRY_RUN}" = "true" ]; then
 fi
 
 setup_git
-gem bump --commit --push --tag --version ${BUMP_LEVEL}
+gem bump --commit --push --tag --release --github --token ${INPUT_GITHUB_TOKEN} --version ${BUMP_LEVEL}
 
