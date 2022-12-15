@@ -3,7 +3,7 @@ description: 'Bump gem version when merging Pull Request with specific labels (b
 author: 'tijn,intens'
 inputs:
   default_bump_level:
-    description: "Default bump level if labels are not attached [major,minor,patch]. Do nothing if it's empty"
+    description: "Default bump level if labels are not attached [bump:major,bump:minor,bump:patch]. Do nothing if it's empty"
   dry_run:
     description: "Do not actually tag next version if it's true"
   github_token:
