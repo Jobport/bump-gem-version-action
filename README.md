@@ -10,7 +10,7 @@ It will create a new version of your gem and a git tag with the latest version.
 
 **`DEFAULT_BUMP_LEVEL`**
 
-`major`/`minor`/`patch`
+`bump:major`/`bump:minor`/`bump:patch`
 When given the action will use this default to bump the version if no label is present in the pull request.
 
 **`DRY_RUN`**
@@ -18,7 +18,6 @@ When given the action will use this default to bump the version if no label is p
 `true`/`false`/`""`
 
 do nothing
-
 
 ### outputs
 

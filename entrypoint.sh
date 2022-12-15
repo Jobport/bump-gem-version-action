@@ -45,11 +45,11 @@ setup_env() {
 setup_from_push_event
 
 BUMP_LEVEL="${INPUT_DEFAULT_BUMP_LEVEL}"
-if echo "${LABELS}" | grep "major" ; then
+if echo "${LABELS}" | grep "bump:major" ; then
   BUMP_LEVEL="major"
-elif echo "${LABELS}" | grep "minor" ; then
+elif echo "${LABELS}" | grep "bump:minor" ; then
   BUMP_LEVEL="minor"
-elif echo "${LABELS}" | grep "patch" ; then
+elif echo "${LABELS}" | grep "bump:patch" ; then
   BUMP_LEVEL="patch"
 fi
 echo "::set-output name=level::#{BUMP_LEVEL}"
