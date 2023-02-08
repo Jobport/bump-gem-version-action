@@ -70,5 +70,13 @@ fi
 setup_git
 setup_gem_credentials
 setup_env
-gem bump --commit --version ${BUMP_LEVEL} --push --tag --release
 
+gem bump --commit --version ${BUMP_LEVEL}
+if [ -f Gemfile.lock ]; then
+  bundle install
+  git add Gemfile.lock
+  git commit --amend --no-edit
+fi
+git push origin
+gem tag --push
+gem release
