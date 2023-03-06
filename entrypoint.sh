@@ -52,14 +52,14 @@ elif echo "${LABELS}" | grep "bump:minor" ; then
 elif echo "${LABELS}" | grep "bump:patch" ; then
   BUMP_LEVEL="patch"
 fi
-echo "::set-output name=level::#{BUMP_LEVEL}"
+echo "level=#{BUMP_LEVEL}" >> $GITHUB_OUTPUT
 
 if [ -z "${BUMP_LEVEL}" ]; then
   echo "PR with labels for bump not found. Do nothing."
-  echo "::set-output name=skipped::true"
+  echo "skipped=true" >> $GITHUB_OUTPUT
   exit
 else
-  echo "::set-output name=skipped::false"
+  echo "skipped=false" >> $GITHUB_OUTPUT
 fi
 
 echo "Bump ${BUMP_LEVEL} version"
