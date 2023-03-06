@@ -77,7 +77,7 @@ setup_env
 
 gem bump --commit --version ${BUMP_LEVEL}
 if [ -f Gemfile.lock ]; then
-  bundle config ${INPUT_PRIVATE_SOURCE} ${INPUT_PRIVATE_SOURCE_USERNAME}:$(echo "$INPUT_PRIVATE_SOURCE_TOKEN" | sed 's/@/%40/')
+  bundle config ${INPUT_PRIVATE_SOURCE} ${INPUT_PRIVATE_SOURCE_USERNAME}:${INPUT_PRIVATE_SOURCE_TOKEN}
   bundle install
   git add Gemfile.lock
   git commit --amend --no-edit
