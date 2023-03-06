@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+cd "${GITHUB_WORKSPACE}" || exit 1
+
+git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
 # Setup these env variables.
 # - LABELS
 # - PR_NUMBER
