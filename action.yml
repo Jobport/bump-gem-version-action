@@ -14,10 +14,10 @@ inputs:
     default: "https://rubygems.pkg.github.com/${{ github.repository_owner }}"
   private_source_username:
     description: "The username to authenticate with the private source"
-    default: ${{ github.actor }}
+    default: "${{ github.actor }}"
   private_source_password:
     description: "The token/password to authenticate with the private source"
-    default: ${{ github.token }}
+    default: "${{ github.token }}"
 outputs:
   level:
     description: "major, minor or patch (or empty)"
