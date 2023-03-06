@@ -75,13 +75,4 @@ setup_git
 setup_gem_credentials
 setup_env
 
-gem bump --commit --version ${BUMP_LEVEL}
-if [ -f Gemfile.lock ]; then
-  bundle config ${INPUT_PRIVATE_SOURCE} $(echo "$INPUT_PRIVATE_SOURCE_USERNAME" | sed 's/\[/%5B/g; s/\]/%5D/g; s/@/%40/g'):$(echo "$INPUT_PRIVATE_SOURCE_TOKEN" | sed 's/\[/%5B/g; s/\]/%5D/g; s/@/%40/g')
-  bundle install
-  git add Gemfile.lock
-  git commit --amend --no-edit
-fi
-git push origin
-gem tag --push
-gem release
+gem bump --commit --version ${BUMP_LEVEL} --push --tag --release
